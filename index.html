@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QR Code Tools</title>
+	<link rel="manifest" href="manifest.json">
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		#text {
+			text-align: center;
+		}
+		#result {
+			background-color: black;
+			color: white;
+			overflow: scroll;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="text"></div>
+	<div id="reader"></div>
+	<pre id="result"></pre>
+	<script src="html5-qrcode/html5-qrcode.min.js"></script>
+	<script>
+		const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+			fps: 16,
+			qrbox: 256,
+		});
+		navigator.serviceWorker?.register("sw.js", { scope: "/", });
+		html5QrcodeScanner.render((decodedText, decodedResult) => {
+			document.getElementById("text").textContent = decodedText;
+			document.getElementById("result").textContent = JSON.stringify(decodedResult, null, 2);
+		});
+	</script>
+</body>
+
+</html>
