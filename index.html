@@ -3,12 +3,17 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>QR Code Tools</title>
 	<link rel="manifest" href="manifest.json">
 	<link rel="icon" size="512x512" href="qr_code_scanner_512dp_E8EAED_FILL0_wght400_GRAD0_opsz48.png">
 	<style>
 		body {
+			width: 100vw;
+			height: 100vh;
+			margin: 0;
+			padding: 0;
+			overflow-y: scroll;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -16,6 +21,10 @@
 		}
 		#text {
 			text-align: center;
+		}
+		#reader {
+			width: 75vmin;
+			height: 75vmin;
 		}
 		#result {
 			background-color: black;
@@ -32,8 +41,12 @@
 	<script src="html5-qrcode/html5-qrcode.min.js"></script>
 	<script>
 		const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+			/* Html5QrcodeCameraScanConfig */
 			fps: 16,
-			qrbox: 256,
+			/* Html5QrcodeScannerConfig */
+			rememberLastUsedCamera: true,
+			showTorchButtonIfSupported: true,
+			showZoomSliderIfSupported: true,
 		});
 		navigator.serviceWorker?.register("sw.js", { scope: "/", });
 		html5QrcodeScanner.render((decodedText, decodedResult) => {
