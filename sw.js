@@ -1,4 +1,4 @@
-const VERSION = "v0.0.38107024";
+const VERSION = "v0.0.38107026";
 const VERSION_URL = "/version.txt";
 const CACHE_NAME = `qr-code-tools-v0.0.38107024`;
 

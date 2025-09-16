@@ -13,11 +13,19 @@
 			height: 100vh;
 			margin: 0;
 			padding: 0;
-			overflow-y: scroll;
+			overflow: hidden;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+			@media (prefers-color-scheme: light) {
+				background-color: hsl(0, 0%, 90%);
+				color: hsl(0, 0%, 10%);
+			}
+			@media (prefers-color-scheme: dark) {
+				background-color: hsl(0, 0%, 10%);
+				color: hsl(0, 0%, 90%);
+			}
 		}
 		#text {
 			text-align: center;
@@ -25,11 +33,17 @@
 		#reader {
 			width: 75vmin;
 			height: 75vmin;
+			& > div > img {
+				@media (prefers-color-scheme: dark) {
+					filter: invert();
+				}
+			}
 		}
 		#result {
+			width: fit-content;
+			height: fit-content;
 			background-color: black;
 			color: white;
-			overflow: scroll;
 		}
 	</style>
 </head>
