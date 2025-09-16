@@ -2,6 +2,7 @@
 	"short_name": "qrct",
 	"name": "QR Code Tools",
 	"start_url": "/",
+	"display": "standalone",
 	"icons": [
 		{
 			"src": "/qr_code_scanner_512dp_E8EAED_FILL0_wght400_GRAD0_opsz48.png",
