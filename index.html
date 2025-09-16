@@ -13,7 +13,8 @@
 			height: 100vh;
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
+			overflow-x: hidden;
+			overflow-y: auto;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -28,11 +29,14 @@
 			}
 		}
 		#text {
+			max-width: 75vmin;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
 			text-align: center;
 		}
 		#reader {
 			width: 75vmin;
-			height: 75vmin;
+			height: fit-content;
 			& > div > img {
 				@media (prefers-color-scheme: dark) {
 					filter: invert();
@@ -40,10 +44,13 @@
 			}
 		}
 		#result {
+			max-width: 75vmin;
 			width: fit-content;
 			height: fit-content;
 			background-color: black;
 			color: white;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
 		}
 	</style>
 </head>
@@ -57,6 +64,10 @@
 		const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
 			/* Html5QrcodeCameraScanConfig */
 			fps: 16,
+			qrbox: (width, height) => ({
+				width: Math.min(width, height),
+				height: Math.min(width, height),
+			}),
 			/* Html5QrcodeScannerConfig */
 			rememberLastUsedCamera: true,
 			showTorchButtonIfSupported: true,
